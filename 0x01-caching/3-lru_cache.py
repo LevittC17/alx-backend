@@ -18,12 +18,10 @@ class LRUCache(BaseCaching):
     def put(self, key, item):
         '''Add an item in the cache'''
         if key is not None and item is not None:
-            if key in self.cache_data:
-                self.order.remove(key)
-            elif len(self.cache_data) >= self.MAX_ITEMS:
+            if len(self.cache_data) >= self.MAX_ITEMS:
                 lru_key = self.order.pop(0)
                 del self.cache_data[lru_key]
-                print('DISCARS: {}'.format(lru_key))
+                print('DISCARD: {}'.format(lru_key))
             self.cache_data[key] = item
             self.order.append(key)
 
