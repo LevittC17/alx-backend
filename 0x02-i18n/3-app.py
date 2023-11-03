@@ -32,7 +32,7 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """
     Determine the best match with supported languages
     This function uses request.accept_languages to
@@ -42,7 +42,7 @@ def get_locale():
 
 
 @app.route('/', strict_slashes=False)
-def index():
+def index() -> str:
     """
     Render the index.html template with parametrized
     page title and header
