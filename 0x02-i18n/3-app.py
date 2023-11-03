@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 """
-Get locale from request
-This module creats a get_locale function to
-determine the best match with supported languages
+Parametrize templates with Babel
+This module parametrizes templates uding the
+gettext function
 """
 
 
-from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask import Flask, render_template
+from flask_babel import Babel, _, gettext
 
 
 app = Flask(__name__)
@@ -20,10 +20,10 @@ babel = Babel(app)
 
 class Config:
     """
-    Configure class for flask app
+    Config class for Flask app
     This class sets Babel's default locale and timezone
     """
-    LANGUANGES = ["en", "fr"]
+    LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
@@ -35,8 +35,8 @@ app.config.from_object(Config)
 def get_locale():
     """
     Determine the best match with supported languages
-    This function uses request.accept_languages to determine
-    the user's preferred language
+    This function uses request.accept_languages to
+    determine the user's preferred language
     """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
@@ -44,9 +44,10 @@ def get_locale():
 @app.route('/', strict_slashes=False)
 def index():
     """
-    Render the index.html template with page title and header
+    Render the index.html template with parametrized
+    page title and header
     """
-    return render_template('2-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == "__main__":
