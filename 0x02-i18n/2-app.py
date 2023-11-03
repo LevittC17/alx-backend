@@ -35,10 +35,10 @@ app.config.from_object(Config)
 def get_locale():
     """
     Determine the best match with supported languages
-    This function uses request.accept_language to determine
+    This function uses request.accept_languages to determine
     the user's preferred language
     """
-    return request.accept_language.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
